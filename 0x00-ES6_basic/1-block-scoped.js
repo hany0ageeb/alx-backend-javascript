@@ -5,6 +5,7 @@ export default function taskBlock(trueOrFalse) {
   if (trueOrFalse) {
     const task = true;
     const task2 = false;
+    [task, task2].map((val) => !val);
   }
 
   return [task, task2];
