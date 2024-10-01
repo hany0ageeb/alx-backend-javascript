@@ -85,3 +85,74 @@ throw error; // Throws a previously defined value (e.g. within a catch block)
 throw new Error("Required"); // Throws a new Error object
 ```
 In practice, the exception you throw should always be an Error object or an instance of an Error subclass, such as RangeError. This is because code that catches the error may expect certain properties, such as message, to be present on the caught value. For example, web APIs typically throw DOMException instances, which inherit from Error.prototype.
+
+## Understanding JavaScript Promises In-Depth
+### Introduction
+Handling asynchronous operations in Javascript is a fundamental part of creating responsive and interactive web applications. Asynchronous programming allows tasks like API calls, file reading, or timers to run in the background, ensuring the application remains responsive. Enter JavaScript Promises, a powerful abstraction for managing these asynchronous operations.
+### The Basics of Promises
+A **Promise** in JavaScript represents the eventual completion (or failure) of an asynchronous operation and its resulting value. A promise can be in one of three states:
+- **Pending**: The initial state, where the operation has not completed yet.
+- **Fulfilled**: The operation completed successfully.
+- **Rejected**: The operation failed.
+
+### Structure of a Promise
+```JS
+const myPromise = new Promise((resolve, reject) => {
+  // Asynchronous operation here
+  if (/* operation successful */) {
+    resolve('Success');
+  } else {
+    reject('Error');
+  }
+});
+```
+### Using Promises
+Once a promise is created, it can be used with .then(), .catch(), and .finally() methods to handle the fulfilled or rejected state.
+```JS
+myPromise
+  .then((value) => {
+    // Handle success
+    console.log(value);
+  })
+  .catch((error) => {
+    // Handle error
+    console.error(error);
+  })
+  .finally(() => {
+    // Execute cleanup or final operations
+    console.log('Completed');
+  });
+```
+#### Using .catch()
+The .catch() method is used to handle any errors that occur in the promise chain.
+```JS
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .catch(error => console.error('Failed to fetch data:', error));
+```
+### Promise.all()
+When you need to run multiple promises in parallel and wait for all of them to complete, Promise.all() is incredibly useful.
+```JS
+Promise.all([promise1, promise2, promise3])
+  .then((results) => {
+    // results is an array of each promise's result
+    console.log(results);
+  })
+  .catch((error) => {
+    // If any promise is rejected, catch the error
+    console.error("A promise failed to resolve", error);
+  });
+```
+### Promise.race()
+Promise.race() is similar to Promise.all(), but it resolves or rejects as soon as one of the promises in the iterable resolves or rejects, with the value or reason from that promise.
+```JS
+Promise.race([promise1, promise2, promise3])
+  .then((value) => {
+    // Value of the first resolved promise
+    console.log(value);
+  })
+  .catch((error) => {
+    // Error of the first rejected promise
+    console.error(error);
+  });
+```
