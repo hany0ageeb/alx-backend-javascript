@@ -1,8 +1,8 @@
 namespace Subjects{
-    export interface Teacher{
-        experienceTeachingC: number;
+    export interface Teacher {
+        experienceTeachingC?: number;
     }
-    class Cpp extends Subjects.Subject{
+    export class Cpp extends Subjects.Subject{
         getRequirements(): string{
             return 'Here is the list of requirements for Cpp';
         }
