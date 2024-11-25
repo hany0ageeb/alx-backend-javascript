@@ -3,6 +3,9 @@ const fs = require('fs');
 
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 const countStudents = (path) => new Promise((resolve, reject) => {
+  if (!path) {
+    reject(new Error('Cannot load the database'));
+  }
   fs.readFile(path, (err, data) => {
     if (err) {
       reject(new Error('Cannot load the database'));
