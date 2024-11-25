@@ -45,7 +45,7 @@ const app = new http.Server((req, res) => {
         res.end();
       })
       .catch((err) => {
-        res.write(err instanceof Error ? err.message : err.toString());
+        res.write(err.message);
         res.end();
       });
   }
