@@ -37,9 +37,10 @@ const countStudents = (path) => new Promise((resolve, reject) => {
   });
 });
 const app = new http.Server((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
-    res.write('Hello Holberton School!');
-    res.end();
+    res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     res.write('This is the list of our students\n');
     countStudents(DB_FILE)
@@ -47,9 +48,9 @@ const app = new http.Server((req, res) => {
         res.write(data);
         res.end();
       })
-      .catch((err) => {
-        res.write(err.message);
-        res.end();
+      .catch(() => {
+        res.statusCode = 404;
+        res.end('Cannot load the database');
       });
   }
 });
