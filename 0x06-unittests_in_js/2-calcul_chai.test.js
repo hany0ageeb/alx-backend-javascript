@@ -60,7 +60,7 @@ describe('testing calculateNumber with SUBTRUCT as type', function(){
     });
 });
 
-describe('testing calculateNumber with DIVIDE as type', function(){
+describe('testing calculateNumber type=DIVIDE', function(){
     it('calculateNumber(DIVIDE, 1, 0) should return Error', function(){
         chai.expect(calculateNumber('DIVIDE', 1, 0)).to.equal('Error');
     });
@@ -92,5 +92,13 @@ describe('testing calculateNumber with DIVIDE as type', function(){
     });
     it('calculateNumber(DIVIDE, 1.2, 2.3) should return 0.5', function(){
         chai.expect(calculateNumber('DIVIDE', 1.2, 2.3)).to.equal(0.5);
+    });
+});
+describe('testing calculateNumber type=DIVIDE and return Error', function(){
+    it('calculateNumber(DIVIDE, 1, 0) should return Error', function(){
+        chai.expect(calculateNumber('DIVIDE', 1, 0)).to.equal('Error');
+    });
+    it('calculateNumber(DIVIDE, 1, 0.1) should return Error', function(){
+        chai.expect(calculateNumber('DIVIDE', 1, 0.1)).to.equal('Error');
     });
 });
