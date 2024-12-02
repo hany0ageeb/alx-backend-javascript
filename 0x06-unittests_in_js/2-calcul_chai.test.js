@@ -1,7 +1,8 @@
 const chai = require("chai");
+const mocha = require('mocha');
 const calculateNumber = require("./1-calcul");
 
-describe('testing calculateNumber with SUM as type', function(){
+mocha.suite('testing calculateNumber type=SUM', function(){
     it('calculateNumber(SUM, 1, 3) should return 4', function(){
         chai.expect(calculateNumber('SUM', 1, 3)).to.equal(4);
     });
@@ -29,9 +30,9 @@ describe('testing calculateNumber with SUM as type', function(){
     it('calculateNumber(SUM, 1.2, 3.3) should return 4', function(){
         chai.expect(calculateNumber('SUM', 1.2, 3.3)).to.equal(4);
     });
-});
+})
 
-describe('testing calculateNumber with SUBTRUCT as type', function(){
+mocha.suite('testing calculateNumber with SUBTRUCT as type', function(){
     it('calculateNumber(SUBTRACT, 1, 3) should return -2', function(){
         chai.expect(calculateNumber('SUBTRACT', 1, 3)).to.equal(-2);
     });
@@ -60,7 +61,7 @@ describe('testing calculateNumber with SUBTRUCT as type', function(){
     });
 });
 
-describe('testing calculateNumber type=DIVIDE', function(){
+mocha.suite('testing calculateNumber type=DIVIDE', function(){
     it('calculateNumber(DIVIDE, 1, 0) should return Error', function(){
         chai.expect(calculateNumber('DIVIDE', 1, 0)).to.equal('Error');
     });
@@ -94,7 +95,8 @@ describe('testing calculateNumber type=DIVIDE', function(){
         chai.expect(calculateNumber('DIVIDE', 1.2, 2.3)).to.equal(0.5);
     });
 });
-describe('testing calculateNumber type=DIVIDE and return Error', function(){
+
+mocha.suite('testing calculateNumber type=DIVIDE and return Error', function(){
     it('calculateNumber(DIVIDE, 1, 0) should return Error', function(){
         chai.expect(calculateNumber('DIVIDE', 1, 0)).to.equal('Error');
     });
